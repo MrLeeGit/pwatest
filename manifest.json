@@ -1,0 +1,27 @@
+{
+    "name": "Sina News Lolita",
+    "short_name": "SinaNews",
+    "icons": [{
+      "src": "https://mjs.sinaimg.cn/wap/online/public/images/addToHome/sina_57X57_v1.png",
+        "sizes": "57x57",
+        "type": "image/png"
+      }, {
+        "src": "https://mjs.sinaimg.cn/wap/online/public/images/addToHome/sina_114x114_v1.png",
+        "sizes": "114x114",
+        "type": "image/png"
+      }, {
+        "src": "https://mjs.sinaimg.cn/wap/online/public/images/addToHome/sina_144x144_v1.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      }, {
+        "src": "https://mjs.sinaimg.cn/wap/online/public/images/addToHome/sina_192x192_v1.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }],
+      
+    "start_url": "https://mjs.sinaimg.cn/wap/project/lolita/simulate/1.0.2/index/index.html",
+    "display": "standalone",
+    "background_color": "#3E4EB8",
+    "theme_color": "#2F3BA2"
+  }
+  
