@@ -3,7 +3,7 @@ var dataCacheName = 'sinaHome-v1';
 var cacheName = 'sinaHome-static-v1';
 var filesToCache = [
   './index.html',
-  './manifest.json',
+  'https://mjs.sinaimg.cn/wap/project/lolita/simulate/1.0.2/index/resource/manifest.json',
   'https://mjs.sinaimg.cn/wap/project/homev8/8.2.78/homeinte/homeinte.min.js',
   'https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/homev8.min.css',
 ];
