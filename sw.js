@@ -1,11 +1,11 @@
 
-var dataCacheName = 'sinaHome-next-page-v1';
+var dataCacheName = 'sinaHome-v1';
 var cacheName = 'sinaHome-static-v1';
 var filesToCache = [
   './index.html',
-  './homeinte.min.js',
   './manifest.json',
-  './homeinte.min.css',
+  'https://mjs.sinaimg.cn/wap/project/homev8/8.2.78/homeinte/homeinte.min.js',
+  'https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/homev8.min.css',
 ];
 
 self.addEventListener('install', function (e) {

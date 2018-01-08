@@ -19,9 +19,10 @@
         "type": "image/png"
       }],
       
-    "start_url": "https://mjs.sinaimg.cn/wap/project/lolita/simulate/1.0.2/index/index.html",
+    "start_url": "https://sina.cn/index/feed?vt=4&pos=108&smart=1",
     "display": "standalone",
     "background_color": "#008af5",
+    "orientation": "portrait",
     "theme_color": "#ff0000"
   }
   
