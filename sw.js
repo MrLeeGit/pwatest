@@ -3,9 +3,9 @@
 var dataCacheName = 'sinaHome-next-page-v1';
 var cacheName = 'sinaHome-static-v1';
 var filesToCache = [
-  './index.html',
-  './homeinte.min.js',
-  './homeomte.min.css'
+  './index.html',    
+  'https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/homev8.min.css',
+  'https://mjs.sinaimg.cn/wap/project/homev8/8.2.77/homev8/homev8.min.js'
 ];
 
 self.addEventListener('install', function (e) {
@@ -18,20 +18,20 @@ self.addEventListener('install', function (e) {
   );
 });
 
-// self.addEventListener('activate', function (e) {
-//   console.log('[ServiceWorker] Activate');
-//   e.waitUntil(
-//     caches.keys().then(function (keyList) {
-//       return Promise.all(keyList.map(function (key) {
-//         if (key !== cacheName && key !== dataCacheName) {
-//           console.log('[ServiceWorker] Removing old cache', key);
-//           return caches.delete(key);
-//         }
-//       }));
-//     })
-//   );
-//   return self.clients.claim();
-// });
+self.addEventListener('activate', function (e) {
+  console.log('[ServiceWorker] Activate');
+  e.waitUntil(
+    caches.keys().then(function (keyList) {
+      return Promise.all(keyList.map(function (key) {
+        if (key !== cacheName && key !== dataCacheName) {
+          console.log('[ServiceWorker] Removing old cache', key);
+          return caches.delete(key);
+        }
+      }));
+    })
+  );
+  return self.clients.claim();
+});
 
 
 // var cacheName = 'homeinte';     // 缓存的名称  
@@ -42,9 +42,10 @@ self.addEventListener('install', function (e) {
 //  安装成功后 ServiceWorker 状态会从 installing 变为 installed */
 //   event.waitUntil(
 //     caches.open(cacheName)                  
-//     .then(cache => cache.addAll([    // 如果所有的文件都成功缓存了，便会安装完成。如果任何文件下载失败了，那么安装过程也会随之失败。        
-//       'homeinte.min.css',
-//       'homeinte.min.js'
+//     .then(cache => cache.addAll([    // 如果所有的文件都成功缓存了，便会安装完成。如果任何文件下载失败了，那么安装过程也会随之失败。    
+//       './index.html',    
+//       'https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/homev8.min.css',
+//       'https://mjs.sinaimg.cn/wap/project/homev8/8.2.77/homev8/homev8.min.js'
 //     ]))
 //   );
 // });
