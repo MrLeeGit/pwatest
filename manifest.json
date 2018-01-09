@@ -1,25 +1,25 @@
 {
-    "name": "手机新浪网",
+    "name": "手机新浪网<br />Sina.cn",
     "short_name": "手机新浪网",
     "icons": [{
-      "src": "https://mjs.sinaimg.cn/wap/online/public/images/addToHome/sina_57X57_v1.png",
+      "src": "https://mjs.sinaimg.cn/wap/project/homev8/8.2.79/homev8/sina_57X57.png",
         "sizes": "57x57",
         "type": "image/png"
       }, {
-        "src": "https://mjs.sinaimg.cn/wap/online/public/images/addToHome/sina_114x114_v1.png",
+        "src": "https://mjs.sinaimg.cn/wap/project/homev8/8.2.79/homev8/sina_114X114.png",
         "sizes": "114x114",
         "type": "image/png"
       }, {
-        "src": "https://mjs.sinaimg.cn/wap/online/public/images/addToHome/sina_144x144_v1.png",
+        "src": "https://mjs.sinaimg.cn/wap/project/homev8/8.2.79/homev8/sina_144X144.png",
         "sizes": "144x144",
         "type": "image/png"
       }, {
-        "src": "https://mjs.sinaimg.cn/wap/online/public/images/addToHome/sina_192x192_v1.png",
+        "src": "https://mjs.sinaimg.cn/wap/project/homev8/8.2.79/homev8/sina_192X192.png",
         "sizes": "192x192",
         "type": "image/png"
       }],
       
-    "start_url": "https://sina.cn/index/feed?vt=4&pos=108&smart=1",
+    "start_url": "https://sina.cn/index/feed?vt=4&pos=108&smart=1&sinapwa=1",
     "display": "standalone",
     "background_color": "#008af5",
     "orientation": "portrait",
