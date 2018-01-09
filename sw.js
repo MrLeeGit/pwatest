@@ -41,6 +41,8 @@ var precacheConfig = [['./index.html'],
 ['https://mjs.sinaimg.cn/wap/project/lolita/simulate/1.0.2/index/resource/manifest.json'],
 ['https://mjs.sinaimg.cn/wap/project/homev8/8.2.78/homeinte/homeinte.min.js'],
 ['https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/homev8.min.css'],
+['https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/fonts/SinaHomeFont.3eeedcb.ttf']
+['https://mjs.sinaimg.cn/umd/base-tools-SUDA/0.0.26/index.all.min.js'],
 ];
 var cacheName = 'sw-precache-v3-sina-home-lolita-' + (self.registration ? self.registration.scope : '');
 
