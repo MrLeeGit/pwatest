@@ -44,7 +44,7 @@ var precacheConfig = [['./index.html'],
 ['https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/fonts/SinaHomeFont.3eeedcb.ttf'],
 ['https://mjs.sinaimg.cn/umd/base-tools-SUDA/0.0.26/index.all.min.js'],
 ];
-var cacheName = 'sw-precache-v3-sina-home-lolita-' + (self.registration ? self.registration.scope : '');
+var cacheName = 'sina-home-v1' + (self.registration ? self.registration.scope : '');
 
 
 var ignoreUrlParametersMatching = [/^utm_/];
