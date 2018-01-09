@@ -495,15 +495,15 @@
     <script src="https://mjs.sinaimg.cn/wap/online/home/v8/trunk/js/utp-jssdk-1.6.4.js"></script>
     <script>
         // PWA
-        if ('serviceWorker' in navigator) {
-        navigator.serviceWorker
-        .register('https://mjs.sinaimg.cn/wap/online/home/v8/trunk/js/swork.js')
-        .then(function () {
-            console.log('Service Worker Registered');
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
+        if ('serviceWorker' in navigator && location.href.indexOf("debug=1") == -1) {
+            navigator.serviceWorker
+            .register('https://mjs.sinaimg.cn/wap/online/home/v8/trunk/js/sw.js')
+            .then(function () {
+                console.log('Service Worker Registered');
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
         }
     </script>
 

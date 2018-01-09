@@ -1,6 +1,6 @@
 
-var dataCacheName = 'sinaHome-v1';
-var cacheName = 'sinaHome-static-v1';
+var dataCacheName = 'sinaInte-v1';
+var cacheName = 'sinaInte-static-v1';
 var filesToCache = [
   './index.html',
   'https://mjs.sinaimg.cn/wap/project/lolita/simulate/1.0.2/index/resource/manifest.json',
