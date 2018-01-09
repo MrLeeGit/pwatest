@@ -497,7 +497,7 @@
         // PWA
         if ('serviceWorker' in navigator && location.href.indexOf("debug=1") == -1) {
             navigator.serviceWorker
-            .register('https://mjs.sinaimg.cn/wap/online/home/v8/trunk/js/sw.js')
+            .register('./sw.js')
             .then(function () {
                 console.log('Service Worker Registered');
             })
