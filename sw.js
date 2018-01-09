@@ -33,7 +33,30 @@ self.addEventListener('activate', function (e) {
   return self.clients.claim();
 });
 
-
+self.addEventListener('fetch', function (e) {
+  // console.log('[Service Worker] Fetch', e.request.url);
+  e.respondWith(
+      caches.match(e.request).then(function (response) {
+        return response || fetch(e.request);
+      })
+    );
+  // var preUrl = '/nextPage/detail-';
+  // if (e.request.url.indexOf(preUrl) > -1) {
+  //   // 提前加载的文章    
+  //   e.respondWith(
+  //     caches.match(e.request).then(function (response) {
+  //       return response || fetch(e.request);
+  //     })
+  //   );
+  // } else {
+    // 这个地方必须优化，否则需要检测的资源太多，fetch规则需要处理
+    // e.respondWith(
+    //   caches.match(e.request).then(function (response) {
+    //     return response || fetch(e.request);
+    //   })
+    // );
+  // }
+});
 
 
 
