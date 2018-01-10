@@ -493,12 +493,21 @@
 <script>var __pushConfig={__isPush:false,__isBanner:false,__pushWaitTime:1,__isNotScheme:true};var isChangeSax=1;</script>
     <script src="https://mjs.sinaimg.cn/umd/base-tools-SUDA/0.0.26/index.all.min.js"></script>
     <script src="https://mjs.sinaimg.cn/wap/online/home/v8/trunk/js/utp-jssdk-1.6.4.js"></script>
+    <script type="text/javascript" src="https://mjs.sinaimg.cn/wap/project/homev8/8.2.78/homeinte/homeinte.min.js"></script>
     <script>
         // PWA
         if ('serviceWorker' in navigator && location.href.indexOf("sinapwa=1") == -1) {
             navigator.serviceWorker
             .register('./sw.js')
             .then(function () {
+                if (window.SIMA && window.SIMA.suda_count) {       
+                    window.SIMA.suda_count({
+                        'type' : 'smartPwa',  //曝光的类型
+                        'name' : 'smartPwaReg',  //当前点击的aid关键字 
+                        'title': '智能版pwa上报日志', //中文说明
+                        'index': 0  //索引  如果是单个为0即可
+                    });
+                };
                 console.log('Service Worker Registered');
             })
             .catch(function (err) {
@@ -508,4 +517,4 @@
     </script>
 
 <body>
-</html><script type="text/javascript" src="https://mjs.sinaimg.cn/wap/project/homev8/8.2.78/homeinte/homeinte.min.js"></script>
+</html>

@@ -1,19 +1,17 @@
 
 var precacheConfig = [
-['./index.html',],
-['https://mjs.sinaimg.cn/wap/project/homev8/8.2.80/homev8/manifest.json',],
+['./index.html',"2aa50e79b1ade03e9e8d454156575f091"],
+['https://mjs.sinaimg.cn/wap/project/homev8/8.2.80/homev8/manifest.json',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/wap/project/homev8/8.2.78/homeinte/homeinte.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/homev8.min.css',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/fonts/SinaHomeFont.3eeedcb.ttf',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/wap/online/home/v8/trunk/js/utp-jssdk-1.6.4.js',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/umd/base-tools-SUDA/0.0.26/index.all.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
 ];
-var cacheName = 'sina-home-v2' + (self.registration ? self.registration.scope : '');
+var cacheName = 'sina-home-v1' + (self.registration ? self.registration.scope : '');
 
 
 var ignoreUrlParametersMatching = [/^utm_/];
-
-
 
 var addDirectoryIndex = function (originalUrl, index) {
     var url = new URL(originalUrl);
@@ -129,6 +127,7 @@ self.addEventListener('install', function(event) {
             // If we don't have a key matching url in the cache already, add it.
             if (!cachedUrls.has(cacheKey)) {
               var request = new Request(cacheKey, {credentials: 'same-origin'});
+              
               return fetch(request).then(function(response) {
                 // Bail out of installation unless we get back a 200 OK for
                 // every request.
@@ -138,6 +137,7 @@ self.addEventListener('install', function(event) {
                 }
 
                 return cleanResponse(response).then(function(responseToCache) {
+                  
                   return cache.put(cacheKey, responseToCache);
                 });
               });
@@ -156,7 +156,6 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('activate', function(event) {
   var setOfExpectedUrls = new Set(urlsToCacheKeys.values());
-
   event.waitUntil(
     caches.keys().then(function(keyList) {
       return Promise.all(keyList.map(function (key) {
