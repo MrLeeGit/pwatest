@@ -1,13 +1,14 @@
-'use strict';
 
-var precacheConfig = [['./index.html'],
-['./manifest.json'],
-['https://mjs.sinaimg.cn/wap/project/homev8/8.2.78/homeinte/homeinte.min.js'],
-['https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/homev8.min.css'],
-['https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/fonts/SinaHomeFont.3eeedcb.ttf'],
-['https://mjs.sinaimg.cn/umd/base-tools-SUDA/0.0.26/index.all.min.js'],
+var precacheConfig = [
+['./index.html',],
+['https://mjs.sinaimg.cn/wap/project/homev8/8.2.80/homev8/manifest.json',],
+['https://mjs.sinaimg.cn/wap/project/homev8/8.2.78/homeinte/homeinte.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
+['https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/homev8.min.css',"2aa50e79b1ade03e9e8d454156575f091"],
+['https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/fonts/SinaHomeFont.3eeedcb.ttf',"2aa50e79b1ade03e9e8d454156575f091"],
+['https://mjs.sinaimg.cn/wap/online/home/v8/trunk/js/utp-jssdk-1.6.4.js',"2aa50e79b1ade03e9e8d454156575f091"],
+['https://mjs.sinaimg.cn/umd/base-tools-SUDA/0.0.26/index.all.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
 ];
-var cacheName = 'sina-home-v7' + (self.registration ? self.registration.scope : '');
+var cacheName = 'sina-home-v2' + (self.registration ? self.registration.scope : '');
 
 
 var ignoreUrlParametersMatching = [/^utm_/];
@@ -157,10 +158,20 @@ self.addEventListener('activate', function(event) {
   var setOfExpectedUrls = new Set(urlsToCacheKeys.values());
 
   event.waitUntil(
+    caches.keys().then(function(keyList) {
+      return Promise.all(keyList.map(function (key) {
+        // debugger;
+        if (key !== cacheName) {
+          console.log('[ServiceWorker] Removing old cache', key);
+          return caches.delete(key);
+        }
+      }));
+    }),
     caches.open(cacheName).then(function(cache) {
       return cache.keys().then(function(existingRequests) {
         return Promise.all(
           existingRequests.map(function(existingRequest) {
+            debugger
             if (!setOfExpectedUrls.has(existingRequest.url)) {
               return cache.delete(existingRequest);
             }
