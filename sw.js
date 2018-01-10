@@ -1,6 +1,6 @@
 
 var precacheConfig = [
-['./index.html',"2aa50e79b1ade03e9e8d454156575f091"],
+['https://sina.cn/index/feed/index.html',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/wap/project/homev8/8.2.80/homev8/manifest.json',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/wap/project/homev8/8.2.78/homeinte/homeinte.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/wap/project/homev8/8.2.75/homev8/homev8.min.css',"2aa50e79b1ade03e9e8d454156575f091"],
@@ -8,7 +8,7 @@ var precacheConfig = [
 ['https://mjs.sinaimg.cn/wap/online/home/v8/trunk/js/utp-jssdk-1.6.4.js',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/umd/base-tools-SUDA/0.0.26/index.all.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
 ];
-var cacheName = 'sina-home-v1' + (self.registration ? self.registration.scope : '');
+var cacheName = 'sina-home-v2' + (self.registration ? self.registration.scope : '');
 
 
 var ignoreUrlParametersMatching = [/^utm_/];

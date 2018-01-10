@@ -497,9 +497,11 @@
     <script>
         // PWA
         if ('serviceWorker' in navigator && location.href.indexOf("sinapwa=1") == -1) {
+            alert("用户支持1")
             navigator.serviceWorker
             .register('./sw.js')
             .then(function () {
+                alert("用户支持2")
                 if (window.SIMA && window.SIMA.suda_count) {       
                     window.SIMA.suda_count({
                         'type' : 'smartPwa',  //曝光的类型
