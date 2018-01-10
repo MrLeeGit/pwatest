@@ -160,7 +160,6 @@ self.addEventListener('activate', function(event) {
   event.waitUntil(
     caches.keys().then(function(keyList) {
       return Promise.all(keyList.map(function (key) {
-        // debugger;
         if (key !== cacheName) {
           console.log('[ServiceWorker] Removing old cache', key);
           return caches.delete(key);
@@ -171,7 +170,6 @@ self.addEventListener('activate', function(event) {
       return cache.keys().then(function(existingRequests) {
         return Promise.all(
           existingRequests.map(function(existingRequest) {
-            debugger
             if (!setOfExpectedUrls.has(existingRequest.url)) {
               return cache.delete(existingRequest);
             }
