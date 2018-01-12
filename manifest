@@ -1,0 +1,28 @@
+{
+    "name": "手机新浪网",
+    "short_name": "手机新浪网",
+    "icons": [{
+      "src": "https://mjs.sinaimg.cn/wap/project/homev8/8.2.79/homev8/sina_57X57.png",
+        "sizes": "57x57",
+        "type": "image/png"
+      }, {
+        "src": "https://mjs.sinaimg.cn/wap/project/homev8/8.2.79/homev8/sina_114X114.png",
+        "sizes": "114x114",
+        "type": "image/png"
+      }, {
+        "src": "https://mjs.sinaimg.cn/wap/project/homev8/8.2.79/homev8/sina_144X144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      }, {
+        "src": "https://mjs.sinaimg.cn/wap/project/homev8/8.2.79/homev8/sina_192X192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }],
+      
+    "start_url": "https://tech.sina.cn/?vt=4&pwa=1",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "orientation": "portrait",
+    "theme_color": "#ffffff"
+  }
+  
