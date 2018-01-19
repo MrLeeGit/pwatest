@@ -1,6 +1,6 @@
 
 var precacheConfig = [
-['https://tech.sina.cn/?__pwa=1',"2aa50e79b1ade03e9e8d454156575f091"],
+['/',"2aa50e79b1ade03e9e8d454156575f093"],
 ['https://mjs.sinaimg.cn/wap/online/component/lib/js/manifest.json',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.21/channel/channel.min.css',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.21/channel/fonts/SinaHomeFont.3eeedcb.ttf',"2aa50e79b1ade03e9e8d454156575f091"],
@@ -8,13 +8,42 @@ var precacheConfig = [
 ['https://mjs.sinaimg.cn/umd/base-tools-SUDA/0.0.26/index.all.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/wap/public/suda/201704271600/suda_map.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
 ['https://mjs.sinaimg.cn/wap/online/public/qusetMobile/201705221616/js/quset_mobile.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
-['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.37/channel/channel.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
-['https://mjs.sinaimg.cn/wap/online/public/addHistoryUrl/addHistoryUrl.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
+['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.37/channel/static/js/channel.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
+// ['https://mjs.sinaimg.cn/wap/online/public/addHistoryUrl/addHistoryUrl.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
 ];
 var cacheName = 'sina-tech-v1' + (self.registration ? self.registration.scope : '');
 
 
-var ignoreUrlParametersMatching = [/^utm_/];
+self.clients.matchAll()
+  .then(function (clients) {
+    console.log(clients,"个数");
+      if (clients && clients.length) {
+          clients.forEach(function (client) {
+              // 发送字符串'sw.update'
+              client.postMessage('sw.update');
+          })
+      }
+  })
+
+// self.clients.matchAll().then(function(clients) {
+//   console.log(clients,"调用服务，调通")
+//   // clients.forEach(function(client) {
+//     // clients.postMessage('来自sw的问候');
+//   // })
+// });
+
+// self.clients.matchAll().then(function(clients) {
+//   clients.forEach(function(client) {
+//       console.log("调用服务，调通")
+//       client.postMessage('来自sw的问候');
+//   })
+// });
+self.addEventListener('message', function(event) {
+  console.log(event.data,"您好pwa哈哈哈哈哈");
+});
+
+
+var ignoreUrlParametersMatching = [/./];
 
 var addDirectoryIndex = function (originalUrl, index) {
     var url = new URL(originalUrl);
