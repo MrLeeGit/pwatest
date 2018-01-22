@@ -1,71 +1,87 @@
-// PWA
-if ('serviceWorker' in navigator && location.href.indexOf("sinapwa=1") == -1) {
-  const sendMessageToSW = msg => new Promise((resolve, reject) => {
-    const messageChannel = new MessageChannel();
-    
-    messageChannel.port1.onmessage = event => {
-      if (event.data.error) {
-        debugger
-        reject(event.data.error);
-      } else {
-        debugger
-        resolve(event.data);
-      }
-    };
+var serviceWorkerOption = {
+  "assets": ["//shadow.elemecdn.com/app/h5/tracer.87b26a4.js", "//shadow.elemecdn.com/npm/vue@2.4.2/dist/vue.runtime.min.js", "//shadow.elemecdn.com/gh/elemefe/vue-img@2.8.1/dist/vue-img.min.js", "//shadow.elemecdn.com/faas/h5/vendor.a8285d0.js"],
+  "hash": "UjXSJn6",
+  "webpackPublicPath": "//shadow.elemecdn.com/faas/h5/"
+};
 
-    navigator.serviceWorker.controller && navigator.serviceWorker.controller.postMessage(msg, [messageChannel.port2]);
-  });
-
-  navigator.serviceWorker
-  .register('http://127.0.0.1:8887/sw.js')
-  .then(function (registration) {
-      if (window.SIMA && window.SIMA.suda_count) {       
-          window.SIMA.suda_count({
-              'type' : 'techPwa',  //曝光的类型
-              'name' : 'techPwaReg',  //当前点击的aid关键字 
-              'title': '科技首页pwa注册上报日志', //中文说明
-              'index': 0  //索引  如果是单个为0即可
-          });
+!
+function(e) {
+  var t = {};
+  function o(s) {
+      if (t[s]) return t[s].exports;
+      var n = t[s] = {
+          i: s,
+          l: !1,
+          exports: {}
       };
-      console.log('pwa注册成功');
-      // if(location.href.indexOf("__pwa=1") == -1){
-      // 	registration.unregister().then(function(boolean) {
-      // 		if(boolean){
-      // 			if (window.SIMA && window.SIMA.suda_count) {       
-      // 					window.SIMA.suda_count({
-      // 							'type' : 'techPwa',  //曝光的类型
-      // 							'name' : 'techPwaUnreg',  //当前点击的aid关键字 
-      // 							'title': '科技首页pwa注销上报日志', //中文说明
-      // 							'index': 0  //索引  如果是单个为0即可
-      // 					});
-      // 			};
-      // 			console.log("pwa注销成功")
-      // 		}
-      // 	});
-      // } 
-  })
-  .then(() => sendMessageToSW('您好pwa'))
-  .catch(function (err) {
-    console.log("pwa错误提示",err);
-  })
-  this.addEventListener("active", function(event) {
-    console.log("service worker is active");
-  });
-
-  window.addEventListener('message', function (e) {
-    console.log(e,"来自pwa的问候哈哈哈哈")
-    // logState(e.target.state);
-  });
-// 	var channel = new MessageChannel();
-// 	channel.port1.onmessage = e => {
-// 		console.log('main thread receive message...');
-// 		console.log(e);
-// 	}
-
-// // port2给对方
-// 	serviceWorker.postMessage('hello world!', [channel.port2]);
-// 	serviceWorker.addEventListener('statechange', function (e) {
-// 		// logState(e.target.state);
-// 	});
-
-}
+      return e[s].call(n.exports, n, n.exports, o),
+      n.l = !0,
+      n.exports
+  }
+  o.m = e,
+  o.c = t,
+  o.d = function(e, t, s) {
+      o.o(e, t) || Object.defineProperty(e, t, {
+          configurable: !1,
+          enumerable: !0,
+          get: s
+      })
+  },
+  o.n = function(e) {
+      var t = e && e.__esModule ?
+      function() {
+          return e.
+      default
+      }:
+      function() {
+          return e
+      };
+      return o.d(t, "a", t),
+      t
+  },
+  o.o = function(e, t) {
+      return Object.prototype.hasOwnProperty.call(e, t)
+  },
+  o.p = "//shadow.elemecdn.com/faas/h5/",
+  o(o.s = 0)
+} ([function(e, t, o) {
+  "use strict";
+  try {
+      importScripts("https://shadow.elemecdn.com/gh/eleme/perf-sw@0.1.4/dist/perf.min.js")
+  } catch(e) {
+      console.warn("Failed to import perf!")
+  }
+  self.addEventListener("install", e = >{
+      e.waitUntil(caches.delete("static").
+      catch(() = >{}))
+  }),
+  self.addEventListener("activate", () = >{
+      self.clients && self.clients.claim && self.clients.claim()
+  }),
+  self.assets = self.serviceWorkerOption.assets,
+  importScripts("/sw-toolbox.js"),
+  self.toolbox.options.debug = -1 !== self.location.search.indexOf("debug=true"),
+  self.toolbox.options.networkTimeoutSeconds = 3,
+  self.toolbox.router.get("/sw.js", self.toolbox.networkOnly);
+  let s = "/(.+/[^\\.]*)",
+  n = "/(.+/)",
+  r = self.location.href.indexOf("UC=true") ? n: s;
+  if (self.toolbox.router.get(r, (e, t, o) = >self.toolbox.fastest(e, t, o).
+  catch(() = >(console.info(`Failed to fetch $ {
+      e.url
+  },
+  fallback to offline.`), self.toolbox.cacheOnly(new Request("/offline/"), t, o))), {
+      cache: {
+          name: "dynamic",
+          maxEntries: 100,
+          maxAgeSeconds: 86400
+      }
+  }), !self.location.search.match(/debug=true/)) {
+      let e = self.location.search.match(/alipay=true/);
+      fetch("https://crayfish.elemecdn.com/h5.ele.me@json/service-worker").then(e = >e.json()).then(t = >{ (t.downgrade || e && t.downgrade_alipay) && self.registration.unregister()
+      }).
+      catch(() = >{
+          e && self.registration.unregister()
+      })
+  }
+}]);
