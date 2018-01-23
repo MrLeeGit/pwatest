@@ -5,7 +5,7 @@ var precacheConfig = [
   ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.21/channel/fonts/SinaHomeFont.3eeedcb.ttf',"2aa50e79b1ade03e9e8d454156575f091"],
   ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.21/channel/img/bg.png',"2aa50e79b1ade03e9e8d454156575f091"],
   ['https://mjs.sinaimg.cn/umd/base-tools-SUDA/0.0.26/index.all.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
-  ['https://mjs.sinaimg.cn/wap/public/suda/201704271600/suda_map.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
+  ['https://mjs.sinaimg.cn/umd/base-tools-SIMA/0.0.23/index.all.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
   ['https://mjs.sinaimg.cn/wap/online/public/qusetMobile/201705221616/js/quset_mobile.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
   ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.42/channel/static/js/channel.min.js',"2aa50e79b1ade03e9e8d454156575f092"],
   ['https://mjs.sinaimg.cn/wap/online/public/addHistoryUrl/addHistoryUrl.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
