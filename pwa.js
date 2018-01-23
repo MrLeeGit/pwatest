@@ -49,15 +49,7 @@
     }
     
     function pwaWorkFn(isOff){
-      // PWA
-      if (window.isPWA && window.SIMA && window.SIMA.suda_count) {       
-        window.SIMA.suda_count({
-            'type' : 'techPwa',  //曝光的类型
-            'name' : 'techPwaCount',  //当前点击的aid关键字 
-            'title': '科技首页pwa灰度用户', //中文说明
-            'index': 0  //索引  如果是单个为0即可
-        });
-      };
+
       const sendMessageToSW = msg => new Promise((resolve, reject) => {
         const messageChannel = new MessageChannel();
         messageChannel.port1.onmessage = event => {
@@ -72,36 +64,37 @@
       if ('serviceWorker' in navigator) {
         var isCaln = true;
         navigator.serviceWorker
-        .register('./sw.js?pwa='+window.isPWA)
+        // .register('https://tech.sina.cn/service_worker.d.pwa?pwa='+window.isPWA)
+        .register('./service_worker.d.js?pwa='+window.isPWA)
         .then(function (registration) {
-            if (window.SIMA && window.SIMA.suda_count) {       
-                window.SIMA.suda_count({
-                    'type' : 'techPwa',  //曝光的类型
-                    'name' : 'techPwaReg',  //当前点击的aid关键字 
-                    'title': '科技首页pwa注册上报日志', //中文说明
-                    'index': 0  //索引  如果是单个为0即可
-                });
-            };
+            window.SIMA && window.SIMA({ 
+                action : "_techPwaReg", 
+                pk : '187523', 
+                data :  {
+                    "version" :"pwa"
+                }
+            })
             pwaStorage.set("isIntallPwa",1);
             console.log('pwa注册成功');
             if(isOff){
               registration.unregister().then(function(boolean) {
                 if(boolean){
-                  if (window.SIMA && window.SIMA.suda_count) {       
-                      window.SIMA.suda_count({
-                          'type' : 'techPwa',  //曝光的类型
-                          'name' : 'techPwaUnreg',  //当前点击的aid关键字 
-                          'title': '科技首页pwa注销上报日志', //中文说明
-                          'index': 0  //索引  如果是单个为0即可
-                      });
-                  };
+                    window.SIMA && window.SIMA({ 
+                        action : "_techPwaUnReg", 
+                        pk : '187523', 
+                        data :  {
+                            "version" :"pwa"
+                        }
+                    })
                   pwaStorage.set("isIntallPwa",0);
                   console.log("pwa注销成功")
                 }
               });
             }
         })
-        .then(() => sendMessageToSW("isIntallPwa"))
+        .then(function(){
+            sendMessageToSW("isIntallPwa")
+        })
         .catch(function (err) {
           console.log("pwa错误提示",err);
         })
@@ -109,6 +102,14 @@
     
       //接受pwa消息   
       navigator.serviceWorker.addEventListener('message', function (e) {
+        window.pwaEvent && window.pwaEvent.emit('pwa');
+        window.SIMA && window.SIMA({ 
+            action : "_techPwaLoad", 
+            pk : '187523',
+            data :  {
+                "version" :"pwa"
+            }
+        })
         console.log(e.data,"来自pwa的问候")
       });
     }
