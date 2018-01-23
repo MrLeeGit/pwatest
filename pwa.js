@@ -103,6 +103,9 @@
       //接受pwa消息   
       navigator.serviceWorker.addEventListener('message', function (e) {
         window.pwaEvent && window.pwaEvent.emit('pwa');
+        if(window.sudaMapConfig){
+            window.sudaMapConfig.version ="pwa"
+        }
         window.SIMA && window.SIMA({ 
             action : "_techPwaLoad", 
             pk : '187523',
