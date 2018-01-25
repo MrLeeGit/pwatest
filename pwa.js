@@ -1,31 +1,5 @@
 (function(){
-    const pwaStorage = {
-        isfastmode: function() {
-            return (function(){
-            var isfastmode =1;
-            try {
-                localStorage.setItem('checkfastmode', 1);
-                isfastmode = 0;
-            } catch (e) {
-    
-            }
-            return isfastmode;
-            })();
-        },
-        set: function(key, value) {
-            if(this.isfastmode())return '';
-            localStorage.setItem(key, JSON.stringify(value));
-        },
-        get: function(key) {
-            if(this.isfastmode())return '';
-            return JSON.parse(localStorage.getItem(key));
-        },
-        remove: function(key) {
-            if(this.isfastmode())return '';
-            localStorage.removeItem(key);
-        }
-    }
-    var isIntallPwa = pwaStorage.get("isIntallPwa");
+    if (!navigator || !navigator.serviceWorker || !window.MessageChannel) return '';
     
     if(location.href.indexOf("pwa=1") != -1){
       window.isPWA = 1;
@@ -33,36 +7,8 @@
       window.isPWA = 0;
     }
     
-    if(window.isPWA){
-        // 注册用户
-        pwaWorkFn();
-        console.log("注册用户")
-    }else{
-        if(isIntallPwa){
-            // 注销
-            pwaWorkFn(1);
-            console.log("注销用户")
-        }else{
-            // 没执行pwa
-            console.log("没执行pwa")
-        }
-    }
-    
-    function pwaWorkFn(isOff){
-
-      const sendMessageToSW = msg => new Promise((resolve, reject) => {
-        const messageChannel = new MessageChannel();
-        messageChannel.port1.onmessage = event => {
-          // if (event.data.error) {
-          //   reject(event.data.error);
-          // } else {
-          //   resolve(event.data);
-          // }
-        };
-        navigator.serviceWorker.controller && navigator.serviceWorker.controller.postMessage(msg, [messageChannel.port2]);
-      });
-      if ('serviceWorker' in navigator) {
-        var isCaln = true;
+    // 注册的方法
+    function regPwaUser(){
         navigator.serviceWorker
         // .register('https://tech.sina.cn/service_worker.d.pwa?pwa='+window.isPWA)
         .register('./service_worker.d.js?pwa='+window.isPWA)
@@ -74,11 +20,33 @@
                     "version" :"pwa"
                 }
             })
-            pwaStorage.set("isIntallPwa",1);
-            console.log('pwa注册成功');
-            if(isOff){
-              registration.unregister().then(function(boolean) {
-                if(boolean){
+        })
+        .catch(function (err) {
+            console.log("pwa错误提示",err);
+        })
+    }
+    // 通讯方法
+    const sendMessageToSW = msg => new Promise((resolve, reject) => {
+        const messageChannel = new MessageChannel();
+        messageChannel.port1.onmessage = event => {};
+        navigator.serviceWorker.controller && navigator.serviceWorker.controller.postMessage(msg, [messageChannel.port2]);
+    });
+
+    function isActionRegPwa(){
+        navigator.serviceWorker.getRegistration().then(function(res){
+            // 是否灰度 
+            if(window.isPWA){
+                if(!res){
+                    // 未注册用户
+                    console.log("pwa注册用户")
+                    regPwaUser();
+                }else{
+                    // 注册使用用户
+                    console.log("pwa注册使用用户")
+                }
+            }else{
+                // 注册用户
+                if(res){
                     window.SIMA && window.SIMA({ 
                         action : "_techPwaUnReg", 
                         pk : '187523', 
@@ -86,22 +54,26 @@
                             "version" :"pwa"
                         }
                     })
-                  pwaStorage.set("isIntallPwa",0);
-                  console.log("pwa注销成功")
+                    console.log("pwa注销成功")
+                    // 注销操作
+                    res.unregister();
+                }else{
+                    console.log("未使用pwa用户")
                 }
-              });
             }
         })
-        .then(function(){
-            sendMessageToSW("isIntallPwa")
-        })
-        .catch(function (err) {
-          console.log("pwa错误提示",err);
-        })
-      }
+    }
+
+    // 发起通讯
+    navigator.serviceWorker.ready.then(function(){
+        sendMessageToSW("isIntallPwa")
+    })
     
-      //接受pwa消息   
-      navigator.serviceWorker.addEventListener('message', function (e) {
+    // 页面加载完毕执行pwa代码
+    window.addEventListener("load",isActionRegPwa);
+
+    //接受pwa消息   
+    navigator.serviceWorker.addEventListener('message', function (e) {
         window.pwaEvent && window.pwaEvent.emit('pwa');
         if(window.sudaMapConfig){
             window.sudaMapConfig.version ="pwa"
@@ -114,6 +86,5 @@
             }
         })
         console.log(e.data,"来自pwa的问候")
-      });
-    }
+    });
 })()

@@ -1,13 +1,13 @@
 var precacheConfig = [
   // ['/',"2aa50e79b1ade03e9e8d454156575f094"],
   ['https://mjs.sinaimg.cn/wap/online/component/lib/js/manifest.json',"2aa50e79b1ade03e9e8d454156575f091"],
-  ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.42/channel/static/css/channel.min.css',"2aa50e79b1ade03e9e8d454156575f091"],
+  ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.43/channel/static/css/channel.min.css',"2aa50e79b1ade03e9e8d454156575f091"],
   ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.21/channel/fonts/SinaHomeFont.3eeedcb.ttf',"2aa50e79b1ade03e9e8d454156575f091"],
   ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.21/channel/img/bg.png',"2aa50e79b1ade03e9e8d454156575f091"],
   ['https://mjs.sinaimg.cn/umd/base-tools-SUDA/0.0.26/index.all.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
-  ['https://mjs.sinaimg.cn/umd/base-tools-SIMA/0.0.23/index.all.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
+  // ['https://mjs.sinaimg.cn/umd/base-tools-SIMA/0.0.23/index.all.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
   ['https://mjs.sinaimg.cn/wap/online/public/qusetMobile/201705221616/js/quset_mobile.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
-  ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.42/channel/static/js/channel.min.js',"2aa50e79b1ade03e9e8d454156575f092"],
+  ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.43/channel/static/js/channel.min.js',"2aa50e79b1ade03e9e8d454156575f092"],
   ['https://mjs.sinaimg.cn/wap/online/public/addHistoryUrl/addHistoryUrl.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
   ];
   var cacheName = 'sina-tech-v2' + (self.registration ? self.registration.scope : '');
@@ -166,6 +166,11 @@ var precacheConfig = [
     self.clients && self.clients.claim && self.clients.claim()
     var setOfExpectedUrls = new Set(urlsToCacheKeys.values());
     event.waitUntil(
+      async function(){
+        if(self.registration.navigationPreload){
+          await self.registration.navigationPreload.enable();
+        }
+      }(),
       caches.keys().then(function(keyList) {
         return Promise.all(keyList.map(function (key) {
           if (key !== cacheName) {
@@ -184,7 +189,8 @@ var precacheConfig = [
             })
           );
         });
-      }).then(function() {
+      })
+      .then(function() {
         
         return self.clients.claim();
         
@@ -194,6 +200,7 @@ var precacheConfig = [
   
   
   self.addEventListener('fetch', function(event) {
+    
     if (event.request.method === 'GET') {
       // Should we call event.respondWith() inside this fetch event handler?
       // This needs to be determined synchronously, which will give other fetch
@@ -229,7 +236,6 @@ var precacheConfig = [
       if (shouldRespond) {
         event.respondWith(
           caches.open(cacheName).then(function(cache) {
-            
             return cache.match(urlsToCacheKeys.get(url)).then(function(response) {
               if (response) {
                 return response;
@@ -252,6 +258,15 @@ var precacheConfig = [
   if(self.location.search.indexOf("pwa=0") != -1 && self.registration){
     self.registration.unregister()
   }
+  // fetch("https://interface.sina.cn/wap_api/wap_huidu_status.d.json?range=0,99&?"+Math.random())
+  // .then(json)
+  // .then(function(data){
+  //   console.log(data,"ddssfasfdsadfds")
+  //   // e.json().then(function(obj){
+  //   //   console.log(obj.data,"ddddddddddddd")
+  //   // })
+  // })
+  
 
 
   self.addEventListener('message', function(event) {
@@ -264,7 +279,7 @@ var precacheConfig = [
     });
   });
   
- 
+
   
   
   
