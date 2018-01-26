@@ -73,7 +73,7 @@
     window.addEventListener("load",isActionRegPwa);
 
     window.addEventListener('offline', function(e) {
-        
+        alert("断网了")
         Notification.requestPermission().then(grant => {
             if (grant !== 'granted') {
                 return;
