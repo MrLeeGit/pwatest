@@ -72,6 +72,24 @@
     // 页面加载完毕执行pwa代码
     window.addEventListener("load",isActionRegPwa);
 
+    window.addEventListener('offline', function(e) {
+        
+        Notification.requestPermission().then(grant => {
+            if (grant !== 'granted') {
+                return;
+            }
+            const notification = new Notification("Hi，网络不给力哟", {
+                body: '您的网络貌似离线了',
+                icon: 'https://mjs.sinaimg.cn/wap/project/homev8/8.2.79/homev8/sina_57X57.png'
+            });
+    
+            notification.onclick = function() {
+                notification.close();
+            };
+        });
+        location.href='https://'+location.host+'/offline.html'
+    });
+
     //接受pwa消息   
     navigator.serviceWorker.addEventListener('message', function (e) {
         window.pwaEvent && window.pwaEvent.emit('pwa');

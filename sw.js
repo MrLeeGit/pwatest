@@ -252,7 +252,12 @@ var precacheConfig = [
   if(self.location.search.indexOf("pwa=0") != -1 && self.registration){
     self.registration.unregister()
   }
+  // fetch("http://interface.sina.cn/wap_api/wap_huidu_status.d.json?range=0,99")
 
+  // fetch("https://crayfish.elemecdn.com/h5.ele.me@json/service-worker").then(e = >e.json())
+  // .then(t = >{ 
+  //   (t.downgrade || e && t.downgrade_alipay) && self.registration.unregister()
+  //   })
 
   self.addEventListener('message', function(event) {
     console.log(event.data,"来自html的问候");
