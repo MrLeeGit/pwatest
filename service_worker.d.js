@@ -9,6 +9,7 @@ var precacheConfig = [
   ['https://mjs.sinaimg.cn/wap/online/public/qusetMobile/201705221616/js/quset_mobile.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
   ['https://mjs.sinaimg.cn/wap/project/channelv4/1.2.43/channel/static/js/channel.min.js',"2aa50e79b1ade03e9e8d454156575f092"],
   ['https://mjs.sinaimg.cn/wap/online/public/addHistoryUrl/addHistoryUrl.min.js',"2aa50e79b1ade03e9e8d454156575f091"],
+  ['http://127.0.0.1:8887/offline.html',"2aa50e79b1ade03e9e8d454156575f091"]
   ];
   var cacheName = 'sina-tech-v2' + (self.registration ? self.registration.scope : '');
   var pwaState = {

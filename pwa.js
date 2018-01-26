@@ -87,7 +87,7 @@
                 notification.close();
             };
         });
-        location.href='https://'+location.host+'/offline.html'
+        // location.href='https://'+location.host+'/offline.html'
     });
 
     //接受pwa消息   
