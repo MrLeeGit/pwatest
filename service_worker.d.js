@@ -47,7 +47,7 @@ workboxSW.router.registerRoute(
 
 // 页面图片资源
 workboxSW.router.registerRoute(
-  'http://k.sinaimg.cn/(.*)',
+  'https://k.sinaimg.cn/(.*)',
   workboxSW.strategies.networkFirst({
     cacheName:"imageResource"
   })
