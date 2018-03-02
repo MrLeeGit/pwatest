@@ -226,11 +226,12 @@
         })
     }
 
+    // // 发起通讯
+    // navigator.serviceWorker.ready.then(function(){
+        
+    // })
     // 发起通讯
-    navigator.serviceWorker.ready.then(function(){
-        sendMessageToSW(window.isPWA)
-    })
-    // sendMessageToSW(window.isPWA)
+    sendMessageToSW(window.isPWA)
 
     // 页面加载完毕执行pwa代码
     if(window.isPWA == 1){
