@@ -187,6 +187,17 @@
                     
                 }else{
                     // 注册使用用户
+                    window.pwaEvent && window.pwaEvent.emit('pwa','pwa=use');
+                    if(window.sudaMapConfig){
+                        window.sudaMapConfig.version ="pwa"
+                    }
+                    window.SIMA && window.SIMA({ 
+                        action : "_techPwaLoad", 
+                        pk : '187523',
+                        data :  {
+                            "version" :"pwa"
+                        }
+                    })
                     console.log("pwa注册使用用户");  
                 }
             }else{

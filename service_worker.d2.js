@@ -57,7 +57,6 @@ workboxSW.router.registerRoute(
 )
 
 self.addEventListener('message', function(event) {
-  debugger
   console.log(event.data,"来自html的问候");
   self.clients.matchAll().then(function(clients) {
     clients.forEach(function(client) {
