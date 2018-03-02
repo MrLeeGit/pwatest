@@ -23,23 +23,17 @@ const workboxSW = new WorkboxSW()
 // // 页面静态资源
 workboxSW.precache(precacheConfig)
 
-workboxSW.precache([
-  {
-    url: '/offline.html',
-    revision: '11dd7d40996e6d25e0706b6840e678d8'
-  }
-])
 
 // offline page
-self.addEventListener('fetch', (event) => {
-  if (!self.navigator.onLine) {
-    event.respondWith(
-      caches.match(event.request).then((response) => {
-        return caches.match('/offline.html')
-      })
-    )
-  }
-})
+// self.addEventListener('fetch', (event) => {
+//   if (!self.navigator.onLine) {
+//     event.respondWith(
+//       caches.match(event.request).then((response) => {
+//         return caches.match('/offline.html')
+//       })
+//     )
+//   }
+// })
 
 // gtimg cache
 workboxSW.router.registerRoute(
