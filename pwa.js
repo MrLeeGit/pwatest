@@ -230,7 +230,7 @@
     // navigator.serviceWorker.ready.then(function(){
     //     sendMessageToSW(window.isPWA)
     // })
-    sendMessageToSW(window.isPWA)
+    // sendMessageToSW(window.isPWA)
 
     // 页面加载完毕执行pwa代码
     if(window.isPWA == 1){
@@ -267,19 +267,19 @@
 
 
     //接受pwa消息   
-    navigator.serviceWorker.addEventListener('message', function (e) {
-        window.pwaEvent && window.pwaEvent.emit('pwa','pwa=use');
-        if(window.sudaMapConfig){
-            window.sudaMapConfig.version ="pwa"
-        }
-        window.SIMA && window.SIMA({ 
-            action : "_techPwaLoad", 
-            pk : '187523',
-            data :  {
-                "version" :"pwa"
-            }
-        })
-        console.log(e.data,"来自pwa的问候")
-    });
+    // navigator.serviceWorker.addEventListener('message', function (e) {
+    //     window.pwaEvent && window.pwaEvent.emit('pwa','pwa=use');
+    //     if(window.sudaMapConfig){
+    //         window.sudaMapConfig.version ="pwa"
+    //     }
+    //     window.SIMA && window.SIMA({ 
+    //         action : "_techPwaLoad", 
+    //         pk : '187523',
+    //         data :  {
+    //             "version" :"pwa"
+    //         }
+    //     })
+    //     console.log(e.data,"来自pwa的问候")
+    // });
 
 })()
