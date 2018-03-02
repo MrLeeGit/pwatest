@@ -266,7 +266,7 @@
     
 
 
-    接受pwa消息   
+    // 接受pwa消息   
     navigator.serviceWorker.addEventListener('message', function (e) {
         window.pwaEvent && window.pwaEvent.emit('pwa','pwa=use');
         if(window.sudaMapConfig){
